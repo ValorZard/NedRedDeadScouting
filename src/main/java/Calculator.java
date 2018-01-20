@@ -18,12 +18,12 @@ public class Calculator {
         return num;
     }
 
-    public double average(int index){
+    public double average(String key){
 
         double sum = 0;
         for(int i  = 0; i < numTeams; i++){
             try {
-                sum += Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                sum += Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
             }
             catch (Exception ex){
                 throw new NullPointerException("NORTH != UP!!!");
@@ -32,13 +32,13 @@ public class Calculator {
         return sum / numTeams;
     }
 
-    public double average(int index, String team){
+    public double average(String key, String team){
         int num = numbTeams(team);
         double sum = 0;
         for(int i  = 0; i < numTeams; i++){
             try {
-                if(unitsOfData.get(i).getDatas().get(0) == team) {
-                    sum += Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                if(unitsOfData.get(i).getDatas().get("TeamNumber") == team) {
+                    sum += Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
                 }
             }
             catch (Exception ex){
@@ -48,11 +48,11 @@ public class Calculator {
         return sum / num;
     }
 
-    public double median(int index){
+    public double median(String key){
         double [] dataPieces = new double[numTeams];
         for (int i= 0; i < dataPieces.length; i++){
             try {
-                dataPieces[i] = Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                dataPieces[i] = Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
             }
             catch (Exception ex){
                 throw new NullPointerException("WE ARE THE EXCEPTION!!! *Mongol Montage*");
@@ -69,13 +69,13 @@ public class Calculator {
         //
     }
 
-    public double median(int index, String team){
+    public double median(String key, String team){
         int num = numbTeams(team);
         double [] dataPieces = new double[num];
         for (int i= 0; i < dataPieces.length; i++){
             try {
-                if(unitsOfData.get(i).getDatas().get(0) == team) {
-                    dataPieces[i] = Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                if(unitsOfData.get(i).getDatas().get("TeamNumber") == team) {
+                    dataPieces[i] = Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
                 }
             }
             catch (Exception ex){
@@ -93,13 +93,13 @@ public class Calculator {
         //
     }
 
-    public  double standardDeviation(int index){
-        double average = average(index);
+    public  double standardDeviation(String key){
+        double average = average(key);
         double acc = 0;
         for (int i = 0; i < numTeams; i++){
             try {
 
-                acc += Math.pow(Double.parseDouble(unitsOfData.get(i).getDatas().get(index)) - average, 2);
+                acc += Math.pow(Double.parseDouble(unitsOfData.get(i).getDatas().get(key)) - average, 2);
             }
             catch (Exception ex){
                 System.out.println(ex);
@@ -111,14 +111,14 @@ public class Calculator {
         return Math.sqrt(acc);
     }
 
-    public double standardDeviation(int index, String team){
+    public double standardDeviation(String key, String team){
         int num = numbTeams(team);
-        double average = average(index, team);
+        double average = average(key, team);
         double acc = 0; //accumulate
         for (int i = 0; i < numTeams; i++){
             try {
-                if(unitsOfData.get(i).getDatas().get(0) == team) {
-                    acc += Math.pow(Double.parseDouble(unitsOfData.get(i).getDatas().get(index)) - average, 2);
+                if(unitsOfData.get(i).getDatas().get("TeamNumber") == team) {
+                    acc += Math.pow(Double.parseDouble(unitsOfData.get(i).getDatas().get(key)) - average, 2);
                 }
             }
             catch (Exception ex){
@@ -131,37 +131,37 @@ public class Calculator {
         return Math.sqrt(acc);
     }
 
-    public double mode(int index){
+    public double mode(String key){
         double maxValue = 0.0, maxCount = 0.0;
         for (int i = 0; i < numTeams; ++i) {
             int count = 0;
             for (int j = 0; j < numTeams; ++j) {
-                if (Double.parseDouble(unitsOfData.get(i).getDatas().get(index)) == Double.parseDouble(unitsOfData.get(i).getDatas().get(index))) ++count;
+                if (Double.parseDouble(unitsOfData.get(i).getDatas().get(key)) == Double.parseDouble(unitsOfData.get(i).getDatas().get(key))) ++count;
             }
             if (count > maxCount) {
                 maxCount = count;
-                maxValue = Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                maxValue = Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
             }
         }
 
         return maxValue;
     }
 
-    public double mode(int index, String team){
+    public double mode(String key, String team){
         int num = numbTeams(team);
         double maxValue = 0.0, maxCount = 0.0;
         for (int i = 0; i < numTeams; ++i) {
             int count = 0;
-            if(unitsOfData.get(i).getDatas().get(0) == team) {
+            if(unitsOfData.get(i).getDatas().get("TeamNumber") == team) {
                 for (int j = 0; j < numTeams; ++j) {
                     if (unitsOfData.get(i).getDatas().get(0) == team) {
-                        if (Double.parseDouble(unitsOfData.get(i).getDatas().get(index)) == Double.parseDouble(unitsOfData.get(i).getDatas().get(index)))
+                        if (Double.parseDouble(unitsOfData.get(i).getDatas().get(key)) == Double.parseDouble(unitsOfData.get(i).getDatas().get(key)))
                             ++count;
                     }
                 }
                 if (count > maxCount) {
                     maxCount = count;
-                    maxValue = Double.parseDouble(unitsOfData.get(i).getDatas().get(index));
+                    maxValue = Double.parseDouble(unitsOfData.get(i).getDatas().get(key));
                 }
             }
         }

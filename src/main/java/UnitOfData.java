@@ -1,13 +1,10 @@
 import java.util.*;
 public class UnitOfData {
 
-    private List<String> Datas;
+    private HashMap<String, String> Datas;
 
-    public UnitOfData(List<String> ls) {
-        Datas = new ArrayList<String>(24);
-        for(int i = 0; i < ls.size(); i++){
-            Datas.add(ls.get(i));
-        }
+    public UnitOfData(HashMap<String, String> ls) {
+        Datas = ls;
     }
     public boolean boo(String str){
             if(str.equalsIgnoreCase("true")){
@@ -16,16 +13,17 @@ public class UnitOfData {
                 if(str.equalsIgnoreCase("false")) {
                     return false;
                 }else{
-                    throw new StringIndexOutOfBoundsException("WTF did you just input??? Srayan!!??");
+                    //throw new StringkeyOutOfBoundsException("WTF did you just input??? Srayan!!??");
                 }
             }
+            return false;
     }
 
-    public List<String> getDatas() {
+    public HashMap<String, String> getDatas() {
         return Datas;
     }
 
-    public void setDatas(List<String> datas) {
+    public void setDatas(HashMap<String, String> datas) {
         Datas = datas;
     }
 
