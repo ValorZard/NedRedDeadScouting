@@ -1,9 +1,9 @@
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.Map.*;
 public class Driver {
 
@@ -21,17 +21,22 @@ public class Driver {
 
             for(Object o : ja){
                 Map map = (Map) o;
-                ArrayList<String> a = new ArrayList<String>();
+                HashMap<String, String> hmap = new HashMap<String, String>();
                 for(Object m : map.entrySet()){
                     Entry e = (Entry) m;
                     System.out.println(e.getKey()+" "+(String)(e.getValue()));
-                    a.add((String)e.getValue());
+                   hmap.put((String) (e.getKey()), (String) (e.getValue()));
                 }
-                UnitOfData u = new UnitOfData(a);
+                UnitOfData u = new UnitOfData(hmap);
                 unitsOfData.add(u);
             }
             Calculator calc = new Calculator(unitsOfData);
-            System.out.println(calc.average(4));
+            while(true){
+                Scanner scan = new Scanner(System.in);
+                System.out.println("WHAT DO YOU WANT TO AVERAGE?????/*???????*/");
+                String s = scan.nextLine();
+                System.out.println(calc.average(s));
+            }
     }
         catch(Exception ex){
             System.out.println("It didnt work! REEEEEEEEEEE");
