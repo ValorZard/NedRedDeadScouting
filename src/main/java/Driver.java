@@ -13,6 +13,7 @@ public class Driver {
     public static void main(String[] args) {
         // parsing file "JSONExample.json"
         ArrayList<UnitOfData> unitsOfData = new ArrayList<UnitOfData>();
+        Scanner scan = new Scanner(System.in);
         ReadMit r = new ReadMit();
         try {
             Object obj = new JSONParser().parse(r.getFile());
@@ -27,7 +28,7 @@ public class Driver {
                 HashMap<String, String> hmap = new HashMap<String, String>();
                 for (Object m : map.entrySet()) {
                     Entry e = (Entry) m;
-                    System.out.println(e.getKey() + " " + (String) (e.getValue()));
+                    //System.out.println(e.getKey() + " " + (String) (e.getValue()));
                     hmap.put((String) (e.getKey()), (String) (e.getValue()));
                 }
                 UnitOfData u = new UnitOfData(hmap);
@@ -35,7 +36,7 @@ public class Driver {
             }
             Calculator calc = new Calculator(unitsOfData);
             while (true) {
-                Scanner scan = new Scanner(System.in);
+                scan = new Scanner(System.in);
                 System.out.println("WHAT DO YOU WANT TO AVERAGE?????/*???????*/");
                 String s = scan.nextLine();
                 System.out.println(calc.average(s, "1458"));
@@ -48,9 +49,8 @@ public class Driver {
                 }
                 ja = (JSONArray) jo.get("Data");
                 System.out.println("----------------------------------------------------------");
-                try (FileWriter file = new FileWriter("test.json")) {
-
-                    file.write(((JSONObject) obj).toJSONString());
+                try (FileWriter file = new FileWriter(Helper.getResourcePath()+"/test.json")) {
+                    file.write(jo.toJSONString());
                     file.flush();
 
                 } catch (IOException e) {

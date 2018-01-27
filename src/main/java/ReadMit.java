@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ReadMit {
     private String fileName;
     public ReadMit() {
-        this("crapData.json");
+        this(Helper.getResourcePath()+"/test.json");
     }
     public ReadMit(String fileName) {
         this.fileName = fileName;

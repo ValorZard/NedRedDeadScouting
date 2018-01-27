@@ -202,7 +202,7 @@ public class App {
             } catch (Exception ex) {
                 teamScore = 0;
             }
-            Document match = new Document("TeamNumber", teamNumber)
+            Document match = new Document("_id", teamNumber)
                     .append("Competition", competition)
                     .append("CrossedLineAuto", crossedLineAuto)
                     .append("NumOfCubesToScaleAuto", numOfCubesToScaleAuto)
@@ -228,7 +228,7 @@ public class App {
             m.getCollection().insertOne(match);
         }
 
-        m.readDatabase();
+        //m.readDatabase();
         return m.databaseJSON();
     }
 

@@ -82,10 +82,10 @@ public class RedTieMongo {
                 "}";
         try {
             Object obj = new JSONParser().parse(s);
-            System.out.println(s);
+            //System.out.println(s);
             return (JSONObject) obj;
         }catch(Exception ex){
-            System.out.println("REEEE");
+            System.out.println("It could not return the JSON created from the Database.");
         }
         return null;
     }
