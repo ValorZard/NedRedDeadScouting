@@ -49,7 +49,7 @@ public class Driver {
                 }
                 ja = (JSONArray) jo.get("Data");
                 System.out.println("----------------------------------------------------------");
-                try (FileWriter file = new FileWriter(Helper.getResourcePath()+"/test.json")) {
+                try (FileWriter file = new FileWriter("test.json")) {
                     file.write(jo.toJSONString());
                     file.flush();
 
